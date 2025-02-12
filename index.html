@@ -74,7 +74,7 @@
     </div>
     <div class="timer">Time left: <span id="time">5</span> seconds</div>
     <div class="know-more">
-      <button onclick="knowMore()">Know more...</button>
+      <button onclick="window.open('https://ryancartz.github.io/co-blg/', '_blank')">Know more...</button>
     </div>
   </div>
 
@@ -87,6 +87,7 @@
       timerElement.textContent = timeLeft;
       if (timeLeft === 0) {
         clearInterval(timer);
+        playSound('timeup'); // Play time-up sound
         alert('Time is up! The correct answer is Elon Musk.');
       }
     }, 1000);
@@ -95,15 +96,29 @@
     function checkAnswer(answer) {
       clearInterval(timer);
       if (answer === 'Elon Musk') {
+        playSound('correct'); // Play correct sound
         alert('Correct! Elon Musk is the CEO of SpaceX.');
       } else {
+        playSound('incorrect'); // Play incorrect sound
         alert('Incorrect! The correct answer is Elon Musk.');
       }
     }
 
-    // Know more button
-    function knowMore() {
-      window.open('https://en.wikipedia.org/wiki/Elon_Musk', '_blank');
+    // Play sound function
+    function playSound(type) {
+      const audio = new Audio();
+      switch (type) {
+        case 'correct':
+          audio.src = 'https://www.soundjay.com/buttons/button-3.mp3'; // Correct sound
+          break;
+        case 'incorrect':
+          audio.src = 'https://www.soundjay.com/buttons/button-10.mp3'; // Incorrect sound
+          break;
+        case 'timeup':
+          audio.src = 'https://www.soundjay.com/misc/sci-fi-alarm-01.mp3'; // Time-up sound
+          break;
+      }
+      audio.play();
     }
 
     // Pronounce the question
