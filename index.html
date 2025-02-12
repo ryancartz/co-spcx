@@ -88,6 +88,7 @@
       if (timeLeft === 0) {
         clearInterval(timer);
         playSound('timeup'); // Play time-up sound
+        speak("Time is up! The correct answer is Elon Musk.");
         alert('Time is up! The correct answer is Elon Musk.');
       }
     }, 1000);
@@ -97,9 +98,11 @@
       clearInterval(timer);
       if (answer === 'Elon Musk') {
         playSound('correct'); // Play correct sound
+        speak("Correct! Elon Musk is the CEO of SpaceX.");
         alert('Correct! Elon Musk is the CEO of SpaceX.');
       } else {
         playSound('incorrect'); // Play incorrect sound
+        speak("Incorrect! The correct answer is Elon Musk.");
         alert('Incorrect! The correct answer is Elon Musk.');
       }
     }
@@ -121,15 +124,17 @@
       audio.play();
     }
 
-    // Pronounce the question
-    function speakQuestion() {
-      const speech = new SpeechSynthesisUtterance();
-      speech.text = "The question is, who is the CEO of SpaceX? And your options are: Elon Musk, Jeff Bezos, Bill Gates, and Tim Cook. Your time starts now.";
+    // Pronounce text
+    function speak(text) {
+      const speech = new SpeechSynthesisUtterance(text);
       window.speechSynthesis.speak(speech);
     }
 
-    // Speak the question on page load
-    window.onload = speakQuestion;
+    // Pronounce the question and options on page load
+    window.onload = () => {
+      const question = "The question is, who is the CEO of SpaceX? And your options are: Elon Musk, Jeff Bezos, Bill Gates, and Tim Cook. Your time starts now.";
+      speak(question);
+    };
   </script>
 </body>
 </html>
