@@ -72,7 +72,7 @@
       <button onclick="checkAnswer('Bill Gates')">Bill Gates</button>
       <button onclick="checkAnswer('Tim Cook')">Tim Cook</button>
     </div>
-    <div class="timer">Time left: <span id="time">5</span> seconds</div>
+    <div class="timer">Time left: <span id="time">10</span> seconds</div>
     <div class="know-more">
       <button onclick="window.open('https://ryancartz.github.io/co-blg/', '_blank')">Know more...</button>
     </div>
@@ -80,7 +80,7 @@
 
   <script>
     // Timer functionality
-    let timeLeft = 5;
+    let timeLeft = 10;
     const timerElement = document.getElementById('time');
     const timer = setInterval(() => {
       timeLeft--;
@@ -133,7 +133,7 @@
     // Pronounce the question and options on page load
     window.onload = () => {
       const question = "The question is, who is the CEO of SpaceX? And your options are: Elon Musk, Jeff Bezos, Bill Gates, and Tim Cook. Your time starts now.";
-      speak(question);
+      speak(question"The question is, who is the CEO of SpaceX? And your option are: Elon Musk, Jeff Bezos, Bill Gates and Tim Cook. : your time starts now." );
     };
   </script>
 </body>
