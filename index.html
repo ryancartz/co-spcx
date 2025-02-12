@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpaceX CEO Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .quiz-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    h1 {
+      color: #333;
+    }
+    .options {
+      margin: 20px 0;
+    }
+    .options button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: #fff;
+    }
+    .options button:hover {
+      background-color: #0056b3;
+    }
+    .timer {
+      font-size: 20px;
+      color: #d9534f;
+    }
+    .know-more {
+      margin-top: 20px;
+    }
+    .know-more button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #28a745;
+      color: #fff;
+    }
+    .know-more button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <h1>Who is the CEO of SpaceX?</h1>
+    <div class="options">
+      <button onclick="checkAnswer('Elon Musk')">Elon Musk</button>
+      <button onclick="checkAnswer('Jeff Bezos')">Jeff Bezos</button>
+      <button onclick="checkAnswer('Bill Gates')">Bill Gates</button>
+      <button onclick="checkAnswer('Tim Cook')">Tim Cook</button>
+    </div>
+    <div class="timer">Time left: <span id="time">5</span> seconds</div>
+    <div class="know-more">
+      <button onclick="knowMore()">Know more...</button>
+    </div>
+  </div>
+
+  <script>
+    // Timer functionality
+    let timeLeft = 5;
+    const timerElement = document.getElementById('time');
+    const timer = setInterval(() => {
+      timeLeft--;
+      timerElement.textContent = timeLeft;
+      if (timeLeft === 0) {
+        clearInterval(timer);
+        alert('Time is up! The correct answer is Elon Musk.');
+      }
+    }, 1000);
+
+    // Check answer
+    function checkAnswer(answer) {
+      clearInterval(timer);
+      if (answer === 'Elon Musk') {
+        alert('Correct! Elon Musk is the CEO of SpaceX.');
+      } else {
+        alert('Incorrect! The correct answer is Elon Musk.');
+      }
+    }
+
+    // Know more button
+    function knowMore() {
+      window.open('https://en.wikipedia.org/wiki/Elon_Musk', '_blank');
+    }
+
+    // Pronounce the question
+    function speakQuestion() {
+      const speech = new SpeechSynthesisUtterance();
+      speech.text = "The question is, who is the CEO of SpaceX? And your options are: Elon Musk, Jeff Bezos, Bill Gates, and Tim Cook. Your time starts now.";
+      window.speechSynthesis.speak(speech);
+    }
+
+    // Speak the question on page load
+    window.onload = speakQuestion;
+  </script>
+</body>
+</html>
